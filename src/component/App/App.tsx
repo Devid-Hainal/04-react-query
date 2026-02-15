@@ -31,6 +31,10 @@ export default function App() {
   const totalPages = data?.total_pages ?? 0;
   const movies = data?.results ?? [];
 
+  const handlePageChange = ({ selected }: { selected: number }) => {
+    setCurrentPage(selected + 1);
+  };
+
   const handleSelectMovie = (movie: Movie) => {
     setSelectedMovie(movie);
     setIsModalOpen(true);
@@ -58,7 +62,7 @@ export default function App() {
           pageCount={totalPages}
           pageRangeDisplayed={5}
           marginPagesDisplayed={1}
-          onPageChange={({ selected }) => setCurrentPage(selected + 1)}
+          onPageChange={handlePageChange}
           forcePage={currentPage - 1}
           containerClassName={css.pagination}
           activeClassName={css.active}
